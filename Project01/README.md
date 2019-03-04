@@ -5,7 +5,7 @@ Setup
 To use the project analyzer, add the .sh file to the root of your repository. It will only search through the files from within the same folder it begins in and recursively throughout the folder.
 
 Usage
-To use the features of the bash file, simply type bash ProjectAnalyze.sh followed by the feature you wish to use into the terminal. For example if you would like to use the log feature then you would enter into your terminal:
+To use the features of the bash file, simply type bash project_analyze.sh followed by the feature you wish to use into the terminal. For example if you would like to use the log feature then you would enter into your terminal:
 This script will prompt the user for input depending on what function they want to implement.
 
 Features
