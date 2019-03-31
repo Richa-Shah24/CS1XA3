@@ -1,74 +1,317 @@
 <html> 
- <body> 
+ 
+ <body bgcolor = "white"> 	<!-- holds the buttons -->
+ <form align = "center">
+
+ 
   <p> <input type = "text" id = "yourNumber"/> </p>
   
-	  <p> <button type = "button" onclick = "onclickNumber ('1')" >1</button>
-	  <button type = "button" onclick = "onclickNumber ('2') ">2</button>
-	  <button type = "button" onclick = "onclickNumber ('3') ">3</button>
+	  <p> <button type = "button" onclick = "onclickTrigOperation ('sin') ">sin</button>
+	  <button type = "button" onclick = "onclickTrigOperation ('cos') ">cos</button>
+	  <button type = "button" onclick = "onclickTrigOperation ('tan') ">tan</button>
+	  <button type = "button" onclick = "onclickRecursion('n!r') ">n!r</button>
+	  <button type = "button" onclick = "onclickFibonacci('F') ">F</button>
+  
+	  <p> <button type = "button" onclick = "onclickNumber ('7')" >7</button>
+	  <button type = "button" onclick = "onclickNumber ('8') ">8</button>
+	  <button type = "button" onclick = "onclickNumber ('9') ">9</button>
 	  <button type = "button" onclick = "onclickOperation ('+') ">+</button>
+	  <button type = "button" onclick = "onclickFactorial ('n!') ">n!</button>
 	  
 	  <p> <button type = "button" onclick = "onclickNumber ('4')" >4</button>
 	  <button type = "button" onclick = "onclickNumber ('5') ">5</button>
 	  <button type = "button" onclick = "onclickNumber ('6') ">6</button>
 	  <button type = "button" onclick = "onclickOperation ('-') ">-</button>
+	  <button type = "button" onclick = "onclickOperation ('sqrt') ">sqrt</button>
 	  
-	  <p> <button type = "button" onclick = "onclickNumber ('7')" >7</button>
-	  <button type = "button" onclick = "onclickNumber ('8') ">8</button>
-	  <button type = "button" onclick = "onclickNumber ('9') ">9</button>
+	  <p> <button type = "button" onclick = "onclickNumber ('1')" >1</button>
+	  <button type = "button" onclick = "onclickNumber ('2') ">2</button>
+	  <button type = "button" onclick = "onclickNumber ('3') ">3</button>
 	  <button type = "button" onclick = "onclickOperation ('*') ">*</button>
+	  <button type = "button" onclick = "onclickOperation ('^') ">^</button>
+	  <button type = "button" onclick = "onclickDataOperation('Data Display')">Data Display</button>
 	  
 	  <p> <button type = "button" onclick = "onclickNumber ('0')" >0</button>
 	  <button type = "button" onclick = "onclickEquals ('=') ">=</button>
 	  <button type = "button" onclick = "onclickOperation ('/') ">/</button>
-	  
+	  <button type = "button" onclick = "onclickSqrt ('^2') ">^2</button>
+	  <button type = "button" onclick = "onclickDataOperation('Data')">Data</button>
 	  <button type = "button" onclick = "onclickClear ('Clear') ">Clear</button>
-  
+	  
+	  <p>
+	  <button type = "button" onclick = "onclickDataOperation('dSum') ">dSum</button>
+	  <button type = "button" onclick = "onclickDataOperation('dSsq') ">dSsq</button>
+	  <button type = "button" onclick = "onclickDataOperation('dStdv') ">dStdv</button>
+	  <button type = "button" onclick = "onclickDataOperation('dVar') ">dVar</button>
+	  <button type = "button" onclick = "onclickDataOperation('dAvg') ">dAvg</button>
+	
+	</p>
 	<p id = "Result"> </p>
     <script> 
-   
+	
+	//declaring variables
 		var output = document.getElementById ("Result");
 		var input = document.getElementById ("yourNumber");
 		var fnum;
 		var snum;
-		var operation;   
+		var trigOperation;		//sin, cos, tan
+		var operation;			//add, subtract, divide, multiply, to the power of, square root
+		var fibonacci;
+		var onClickClear = true;
 		input.disabled = true;
+		var data = new Array();		
+		//var c = document.getElementById("myCanvas");
+		//var ctx = c.getContext ("2d");
 		
+	//draw a line
+	/*unction onclickDraw()
+	{
+		ctx.beginPath();
+		ctx.moveTo(0,200);
+		//ctx.lineTo(fnum,snum);
+		ctx.lineTo(400,200);
+		ctx.moveTo(200,0);
+		ctx.lineTo(200,400);
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = '#000000';
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(200,200);
+		ctx.lineTo(400,0);
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = '#0000ff';
+		ctx.stroke();
+	}*/
+	
+	// function when number is clicked
 		function onclickNumber (x)
 		{
-			input.value += x;
-		}	
+			{
+				if(onClickClear)				// when onlickClear is clicked
+				{
+					onClickClear = false;		// it is not true
+					input.value = "";
+				}
+			}
+		input.value += x;
+			
+		}
+		/*storing variables for graphing methods
+		function onclickStoreGraphVariables()
+		{
+			var A = input.value.toString;
+			onClickClear = true;
+			var B = input.value.toString;
+			onClickClear = true;
+			var C = input.value.toString;
+			onClickClear = true;
+		}
+		//graphing for quadratic formula
+		function onclickGraph()
+		{
 		
+		}
+		*/
+	// function when operation is clicked	
+	// store number as an integer
 		function onclickOperation (x)
 		{
 			fnum = parseInt (input.value);
 			input.value = "";
 			operation = x;
 		}
+	// function onclickRecursion is clicked
+	// factorial key using recursion
+		function onclickRecursion()
+		{
+			var n = parseInt(input.value);
+			input.value = factorial(n).toString();
+			function factorial(n)
+			{
+				if (n<=1)
+				{
+					return 1;
+				}
+				else
+				{
+					return n*factorial(n-1);
+				}
+			}
+			onClickClear = true;
+		}
+	// function when onclickFactorial is clicked					//Notes: 1! = 1 : is called base case when we talk about recursion (Repetition)
+		function onclickFactorial ()								// factorial (n)
+		{															//{ if (n<= 1)
+			var n = parseInt (input.value); 						//	{ 
+			var f = 1;												//		return 1;
+				for (var i = n; i>=1; i--)							//	}
+				{													//	else
+				f = f*i;											//	{
+				}													//		return n*factorial(n-1);
+			input.value = f.toString();								//	}
+			onClickClear = true;									//}
+		}	
+	// function when onclickFibonacci is clicked
+		function onclickFibonacci ()
+		{
+			var n = parseInt(input.value);
+			input.value = fibonacci(n).toString();
+		
+			function fibonacci (n)
+			{
+				 if (n==1)				//trap if n = 1
+				 {
+					return 1;
+				 }
+				 else if  (n==0)		// trap if n = 0
+				 {
+					 return 0;
+				 }
+				 else 					// if n is greater than 1
+				 {
+					return (fibonacci(n-1) + fibonacci(n-2));
+				 }
+			}
+			onClickClear = true;
+		}
+	// function when trigOperation is clicked
+		function onclickTrigOperation (y)
+		{
+			fnum = parseFloat(input.value);
+			input.value = "";
+			trigOperation = y;
+		
+	// when a trig operation is clicked
+		
+			if (trigOperation == 'sin')
+			{
+				input.value = (Math.sin(fnum*Math.PI/180).toString() );
+			}
+			else if (trigOperation == 'cos')
+			{
+				input.value = (Math.cos(fnum*Math.PI/180).toString() );
+			}
+			else
+			{
+				do
+				{
+				input.value = (Math.tan(fnum*Math.PI/180).toString() );
+				}
+				while (fnum !=90, fnum !=270);
+				input.value = "Infinity";
+			}
+			onClickClear = true;
+		}
+					
+		// function that stores data in an array
+		//preforms an action with the stored data
+		function onclickDataOperation(x)
+		{
+			if (x == 'Data')
+			{
+			data.push(input.value);
+			input.value = "";
+			}
+			else if (x == 'Data Display')
+			{
+			input.value = data.toString();
+			}
+			else if (x == 'dSum')
+			{
+				var dataSum = 0;
+				for (var i = 0; i < data.length; i++)
+				{
+					dataSum = dataSum + parseFloat(data[i]);
+					input.value = dataSum;
+				}
+			}
+			else if (x == 'dSsq')
+			{
+				var dataSsq = 0;
+				for (var i = 0; i < data.length; i++)
+				{
+					dataSsq = dataSsq + parseFloat(Math.pow(data[i], 2));
+					input.value = dataSsq;
+				}
+			}
+			else if (x == 'dStdv')
+			{
+				var dataStdv = 0;
+				for (var i = 0; i < data.length; i++)
+				{ 
+					dataStdv = dataStdv + parseFloat(Math.sqrt(Math.pow(data[i], 2))) / data.length;
+					input.value = dataStdv;
+				}
+			}
+			else if (x == 'dVar')
+			{
+				var dataVar = 0;
+				for (var i = 0; i < data.length; i++)
+				{
+					dataVar = dataVar + parseFloat(Math.pow(data[i], 2)) / data.length ;
+					input.value = dataVar;
+				}
+			}
+			else if (x == 'dAvg')
+			{
+				var dataAvg = 0;
+				for (var i = 0; i < data.length; i++)
+				{
+					dataAvg = dataAvg + parseFloat(data[i]) / data.length;
+					input.value = dataAvg;
+				}
+			}
+			else
+			{
+				//input.value = data.toString();
+			}
+		}
+	// function when equals button is clicked
 		function onclickEquals ()
 		
 		{ 
 		
 		snum = parseInt(input.value);
 		
-			if (operation == '+')
+			if (operation == '+')	//addition - adds first number with second number
 			{
 				input.value  = ((fnum + snum).toString () );
 			}
-			else if (operation == '-')
+			else if (operation == '-')	//subtraction - takes first number and subtracts second number
 			{
 				input.value  =  ((fnum - snum).toString () );
 			}
-			else if (operation == '*')
+			else if (operation == '*')		//multiplication - first number multiplied by second number
 			{
 				input.value  =  ((fnum * snum).toString () );
 			}
-			else 
+			else if (operation == '^2')		//to the power of 2 - first number multiplied by itself
+			{
+				input.value = ((fnum * fnum).toString () );
+			}
+			else if (operation == '^')		//to the power of a number
+			{
+				input.value = (Math.pow(fnum, snum).toString () );
+			}
+			else if (operation == 'sqrt')		//square root - take first number and replaces it with square root of first number
+			{
+				input.value = (Math.sqrt(fnum).toString () );
+			}
+			else if	(operation == '/')			//division - takes first number and divides it by second number
 			{
 				input.value  = ((fnum / snum).toString () );
 			}
+			else
+			{
+				// keep displaying what's already in the textbox
+			}
 			
+			onClickClear = true;
 		}
 
+		// function when onclickClear is clicked
+		// clears numbers in display box and sets it to zero
 		function onclickClear ()
 		{
 			 input.value = "";
