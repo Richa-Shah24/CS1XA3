@@ -1,0 +1,84 @@
+<html> 
+ <body> 
+  <p> <input type = "text" id = "yourNumber"/> </p>
+  
+	  <p> <button type = "button" onclick = "onclickNumber ('1')" >1</button>
+	  <button type = "button" onclick = "onclickNumber ('2') ">2</button>
+	  <button type = "button" onclick = "onclickNumber ('3') ">3</button>
+	  <button type = "button" onclick = "onclickOperation ('+') ">+</button>
+	  
+	  <p> <button type = "button" onclick = "onclickNumber ('4')" >4</button>
+	  <button type = "button" onclick = "onclickNumber ('5') ">5</button>
+	  <button type = "button" onclick = "onclickNumber ('6') ">6</button>
+	  <button type = "button" onclick = "onclickOperation ('-') ">-</button>
+	  
+	  <p> <button type = "button" onclick = "onclickNumber ('7')" >7</button>
+	  <button type = "button" onclick = "onclickNumber ('8') ">8</button>
+	  <button type = "button" onclick = "onclickNumber ('9') ">9</button>
+	  <button type = "button" onclick = "onclickOperation ('*') ">*</button>
+	  
+	  <p> <button type = "button" onclick = "onclickNumber ('0')" >0</button>
+	  <button type = "button" onclick = "onclickEquals ('=') ">=</button>
+	  <button type = "button" onclick = "onclickOperation ('/') ">/</button>
+	  
+	  <button type = "button" onclick = "onclickClear ('Clear') ">Clear</button>
+  
+	<p id = "Result"> </p>
+    <script> 
+   
+		var output = document.getElementById ("Result");
+		var input = document.getElementById ("yourNumber");
+		var fnum;
+		var snum;
+		var operation;   
+		input.disabled = true;
+		
+		function onclickNumber (x)
+		{
+			input.value += x;
+		}	
+		
+		function onclickOperation (x)
+		{
+			fnum = parseInt (input.value);
+			input.value = "";
+			operation = x;
+		}
+		function onclickEquals ()
+		
+		{ 
+		
+		snum = parseInt(input.value);
+		
+			if (operation == '+')
+			{
+				input.value  = ((fnum + snum).toString () );
+			}
+			else if (operation == '-')
+			{
+				input.value  =  ((fnum - snum).toString () );
+			}
+			else if (operation == '*')
+			{
+				input.value  =  ((fnum * snum).toString () );
+			}
+			else 
+			{
+				input.value  = ((fnum / snum).toString () );
+			}
+			
+		}
+
+		function onclickClear ()
+		{
+			 input.value = "";
+			 fnum = 0;
+			 snum = 0;
+			 operation = "";
+			 output.innerHTML = "";
+		}
+   
+    </script>
+  
+ </body>
+</html>
